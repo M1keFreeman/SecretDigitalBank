@@ -8,10 +8,8 @@ Feature: This feature allows user to create new checking account
     Then verify View Checking and New Checking options are displayed
     When user clicks on New Checking Account
 
-
   Scenario: verify New Checking Account header is visible
     Then verify New Checking Account header is displayed
-
 
   Scenario: verify Select Checking Account Type radio button options are unchecked by default
     Then verify Select Checking Account header is displayed
@@ -22,7 +20,42 @@ Feature: This feature allows user to create new checking account
     Then verify Select Account Ownership header is displayed
     And verify Individual and Joint radio buttons unchecked by default
 
+  Scenario:  Verify user is able to enter account name with alphanumeric and special characters
+    Given user is in the account name Field
+    When user field user enters account name with alphanumeric and special characters
+    Then verify that the entered account name corresponds to the name displayed in the field
 
+  Scenario Outline: Verify user is able to enter valid numeric whole or decimal amount
+    Given user is in the input filed "Initial Deposit Amount"
+    When user enters valid numeric whole or decimal "<amount>"
+    Then verify user login failed with an error message
+
+    Examples:
+      | amount      |
+      | 25.00       |
+      | 25          |
+      | 1 000 000   |
+
+  Scenario Outline: Verify user is not able to enter un valid input
+    Given user is in the input filed "Initial Deposit Amount"
+    When user enters un valid "<input>"
+    Then verify user can't continue and corresponding error message is displaid
+
+    Examples:
+      | input       |
+      | $25.00      |
+      | 15          |
+      | hundred     |
+
+  Scenario: verify user is able to create an account and redirected to page to view checking account
+    Given user filled all the fields
+    When user clicks on Submit button
+    Then verify user is redirected to page with checking accounts and cen see message "Successfully created new Interest Checking account named "<account name>""
+
+  Scenario: verify user is able to click on Reset button
+    Given user filled all the fields
+    When user clicks on Reset button
+    Then verify user all filled values are reset to default state
 
 
 ###PreferredCheckingAccount###

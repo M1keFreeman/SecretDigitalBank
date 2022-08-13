@@ -1,5 +1,6 @@
 package com.automation.pages;
 
+import com.automation.utilities.ConfigReader;
 import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -33,6 +34,8 @@ public class NewCheckingAccountPage extends BasePage{
     @FindBy(xpath ="//strong[text()='Select Checking Account Type']")
     WebElement selectCheckingAccountTypeHeader;
 
+    @FindBy(id="name")
+    WebElement accountNameField;
 
     public void clickOnNewChecking(){
         newChecking.click();
@@ -46,19 +49,27 @@ public class NewCheckingAccountPage extends BasePage{
         Assert.assertTrue(selectAccountOwnership.isDisplayed());
     }
 
-  public void verifyOwnershipRadioButtonsAreUnchecked(){
+    public void verifyOwnershipRadioButtonsAreUnchecked(){
 
-Assert.assertFalse(individualRadioButton.isSelected() && jointRadioButton.isSelected());
+    Assert.assertFalse(individualRadioButton.isSelected() && jointRadioButton.isSelected());
 
     }
 
-public void verifyCheckingRadioButtonsAreUnchecked(){
+    public void verifyCheckingRadioButtonsAreUnchecked(){
+
+
         Assert.assertFalse(standardRadioButton.isSelected() && interestRadioButton.isSelected());
 
 }
     public void verifySelectCheckingAccountTypeHeaderIsDisplayed(){
         Assert.assertTrue(selectCheckingAccountTypeHeader.isDisplayed());
     }
+    public void enterAccountName(){
+        accountNameField.sendKeys(ConfigReader.getProperty("checking.account.name"));
+    }
+   public  void verifyIfAccountFieldHasText(){
+       String accountName = accountNameField.getAttribute("value");
+       Assert.assertEquals(ConfigReader.getProperty("checking.account.name"), accountName);
 
-
+   }
 }
