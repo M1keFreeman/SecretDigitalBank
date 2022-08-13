@@ -20,12 +20,10 @@ Feature: This feature allows user to create new checking account
     Then verify Select Account Ownership header is displayed
     And verify Individual and Joint radio buttons unchecked by default
 
-
-
   Scenario:  Verify user is able to enter account name with alphanumeric and special characters
-    Given user is in the "Account Name"
-    When user field user enters "<account name>" with alphanumeric and special characters
-    Then verify that the entered "<account name>" corresponds to the name displayed in the field
+    Given user is in the account name Field
+    When user field user enters account name with alphanumeric and special characters
+    Then verify that the entered account name corresponds to the name displayed in the field
 
   Scenario Outline: Verify user is able to enter valid numeric whole or decimal amount
     Given user is in the input filed "Initial Deposit Amount"
@@ -48,7 +46,6 @@ Feature: This feature allows user to create new checking account
       | $25.00      |
       | 15          |
       | hundred     |
-
 
   Scenario: verify user is able to create an account and redirected to page to view checking account
     Given user filled all the fields

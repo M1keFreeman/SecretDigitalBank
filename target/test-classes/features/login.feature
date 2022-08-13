@@ -12,17 +12,18 @@ Feature: Login feature
     When user clicks on Sign In button
     Then verify user is successfully logged in to the account
 
-  Scenario Outline: Verify user is not able to login with both invalid credentials
+  Scenario Outline: Verify user is not able to login with invalid credentials
     Given user enters invalid username "<invalidUsername>" and password "<invalidPassword>"
     When user clicks on Sign In button
     Then verify user login failed with an error message
     Examples:
-      | invalidUsername | invalidPassword |
-      | admin           | abc123          |
-      | chirag          | admin123        |
-      | chirag          | devx            |
-      |                 | admin123        |
-      | admin           |                 |
+      | invalidUsername       | invalidPassword |
+      | nicolesmith@gmail.com | abc123          |
+      | chirag                | admin123        |
+      | chirag                | devx            |
+      |                       | admin123        |
+      | admin                 |                 |
+      |                       |                 |
 
   Scenario:  Verify user is not able to login with valid username and invalid password
     Given user enters valid username "<username>" and invalid password "<password>"
