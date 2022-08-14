@@ -50,7 +50,7 @@ Feature: This feature allows user to create new checking account
   Scenario: verify user is able to create an account and redirected to page to view checking account
     Given user filled all the fields
     When user clicks on Submit button
-    Then verify user is redirected to page with checking accounts and cen see message "Successfully created new Interest Checking account named "<account name>""
+    Then verify user is redirected to page with checking accounts and cen see message Successfully created new Interest Checking account named account name
 
   Scenario: verify user is able to click on Reset button
     Given user filled all the fields
