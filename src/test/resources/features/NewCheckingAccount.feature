@@ -26,20 +26,20 @@ Feature: This feature allows user to create new checking account
     Then verify that the entered account name corresponds to the name displayed in the field
 
   Scenario Outline: Verify user is able to enter valid numeric whole or decimal amount
-    Given user is in the input filed "Initial Deposit Amount"
+    Given user is in the input field Initial Deposit Amount
     When user enters valid numeric whole or decimal "<amount>"
-    Then verify user login failed with an error message
+    Then verify amount in the field is the same as entered "<amount>"
 
     Examples:
       | amount      |
       | 25.00       |
       | 25          |
-      | 1 000 000   |
+      | 1000000     |
 
   Scenario Outline: Verify user is not able to enter un valid input
-    Given user is in the input filed "Initial Deposit Amount"
+    Given user is in the input filed initial deposit amount
     When user enters un valid "<input>"
-    Then verify user can't continue and corresponding error message is displaid
+    Then verify user can't continue and corresponding error message is displayed
 
     Examples:
       | input       |
@@ -55,7 +55,7 @@ Feature: This feature allows user to create new checking account
   Scenario: verify user is able to click on Reset button
     Given user filled all the fields
     When user clicks on Reset button
-    Then verify user all filled values are reset to default state
+    Then verify user all filled values are reset to default stategit
 
 
 ###PreferredCheckingAccount###

@@ -2,6 +2,7 @@ package com.automation.pages;
 
 import com.automation.utilities.ConfigReader;
 import org.junit.Assert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -37,6 +38,12 @@ public class NewCheckingAccountPage extends BasePage{
     @FindBy(id="name")
     WebElement accountNameField;
 
+    @FindBy(id ="new-account-error-alert")
+    WebElement amountErrorMessage;
+
+    @FindBy(id = "openingBalance")
+    public WebElement initialDepositAmountField;
+
     public void clickOnNewChecking(){
         newChecking.click();
     }
@@ -64,7 +71,10 @@ public class NewCheckingAccountPage extends BasePage{
     public void verifySelectCheckingAccountTypeHeaderIsDisplayed(){
         Assert.assertTrue(selectCheckingAccountTypeHeader.isDisplayed());
     }
+
+
     public void enterAccountName(){
+
         accountNameField.sendKeys(ConfigReader.getProperty("checking.account.name"));
     }
    public  void verifyIfAccountFieldHasText(){
@@ -72,4 +82,21 @@ public class NewCheckingAccountPage extends BasePage{
        Assert.assertEquals(ConfigReader.getProperty("checking.account.name"), accountName);
 
    }
+    public void enterDepositAmount(String amount){
+
+        initialDepositAmountField.sendKeys(amount+ Keys.ENTER);
+    }
+    public  void verifyIfEnteredAmountDisplayed(String amount){
+        String enteredAmount = initialDepositAmountField.getAttribute("value");
+        Assert.assertEquals(amount, enteredAmount);
+
+    }
+    public void enterUnvalidAmount(String input){
+
+        initialDepositAmountField.sendKeys(input + Keys.ENTER);
+    }
+    public  void verifyErrorAmountMessage() {
+        amountErrorMessage.isDisplayed();
+
+    }
 }
