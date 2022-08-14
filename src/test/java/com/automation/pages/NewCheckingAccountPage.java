@@ -47,6 +47,12 @@ public class NewCheckingAccountPage extends BasePage{
     @FindBy(id = "newCheckingReset")
     public WebElement resetButton;
 
+    @FindBy(id = "newCheckingSubmit")
+    public WebElement submitButton;
+
+    @FindBy(id = "new-account-msg")
+    public  WebElement successfullyMessage;
+
     public void clickOnNewChecking(){
         newChecking.click();
     }
@@ -125,7 +131,13 @@ public void clickOnResetButton() {
         Assert.assertTrue(amountField.isEmpty());
     }
 
+    public void clickOnSubmitButton(){
+        submitButton.click();
+    }
 
+    public void verifyUserGetSuccessfullyMessage(){
+        Assert.assertTrue(successfullyMessage.isDisplayed());
+    }
 
 }
 
