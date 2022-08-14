@@ -36,9 +36,9 @@ Feature: This feature allows user to create new checking account
       | 25          |
       | 1000000     |
 
-  Scenario Outline: Verify user is not able to enter un valid input
-    Given user is in the input filed initial deposit amount
-    When user enters un valid "<input>"
+  Scenario Outline: Verify user is not able to enter invalid input
+    Given user is in the input field initial deposit amount
+    When user enters invalid "<input>"
     Then verify user can't continue and corresponding error message is displayed
 
     Examples:
@@ -55,7 +55,7 @@ Feature: This feature allows user to create new checking account
   Scenario: verify user is able to click on Reset button
     Given user filled all the fields
     When user clicks on Reset button
-    Then verify user all filled values are reset to default stategit
+    Then verify all filled values are reset to default
 
 
 ###PreferredCheckingAccount###

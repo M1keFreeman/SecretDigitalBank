@@ -3,12 +3,10 @@ package com.automation.stepDefs;
 import com.automation.pages.HomePage;
 import com.automation.pages.LoginPage;
 import com.automation.pages.NewCheckingAccountPage;
-import com.automation.utilities.ConfigReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.Assert;
 
 public class NewCheckingAccountSteps {
     HomePage homePage =new HomePage();
@@ -101,18 +99,43 @@ public class NewCheckingAccountSteps {
         newCheckingAccountPage.verifyIfEnteredAmountDisplayed(amount);
     }
 
-    @Given("user is in the input filed initial deposit amount")
+    @Given("user is in the input field initial deposit amount")
     public void user_is_in_the_input_filed_initial_deposit_amount() {
 
     }
-    @When("user enters un valid {string}")
+    @When("user enters invalid {string}")
     public void user_enters_un_valid(String input) {
-        newCheckingAccountPage.enterUnvalidAmount(input);
+        newCheckingAccountPage.enterInvalidAmount(input);
     }
     @Then("verify user can't continue and corresponding error message is displayed")
     public void verify_user_can_t_continue_and_corresponding_error_message_is_displayed() {
         newCheckingAccountPage.verifyErrorAmountMessage();
 
     }
+
+    @Given("user filled all the fields")
+    public void user_filled_all_the_fields() {
+newCheckingAccountPage.clickOnStandardRadioButton();
+newCheckingAccountPage.clickOnIndividualRadioButton();
+newCheckingAccountPage.enterAccountName();
+newCheckingAccountPage.enterDepositAmount("25.00");
+
+
+    }
+    @When("user clicks on Reset button")
+    public void user_clicks_on_reset_button() {
+        newCheckingAccountPage.clickOnResetButton();
+
+    }
+    @Then("verify all filled values are reset to default")
+    public void verify_all_filled_values_are_reset_to_default() {
+        newCheckingAccountPage.verifyCheckingRadioButtonsAreUnchecked();
+        newCheckingAccountPage.verifyOwnershipRadioButtonsAreUnchecked();
+        newCheckingAccountPage.verifyAccountNameFieldIsEmpty();
+        newCheckingAccountPage.verifyAmountFieldIsEmpty();
+
+
+    }
+
 
 }

@@ -44,6 +44,9 @@ public class NewCheckingAccountPage extends BasePage{
     @FindBy(id = "openingBalance")
     public WebElement initialDepositAmountField;
 
+    @FindBy(id = "newCheckingReset")
+    public WebElement resetButton;
+
     public void clickOnNewChecking(){
         newChecking.click();
     }
@@ -84,19 +87,45 @@ public class NewCheckingAccountPage extends BasePage{
    }
     public void enterDepositAmount(String amount){
 
-        initialDepositAmountField.sendKeys(amount+ Keys.ENTER);
+        initialDepositAmountField.sendKeys(amount );
     }
     public  void verifyIfEnteredAmountDisplayed(String amount){
         String enteredAmount = initialDepositAmountField.getAttribute("value");
         Assert.assertEquals(amount, enteredAmount);
 
     }
-    public void enterUnvalidAmount(String input){
+    public void enterInvalidAmount(String input){
 
-        initialDepositAmountField.sendKeys(input + Keys.ENTER);
+        initialDepositAmountField.sendKeys(input );
     }
     public  void verifyErrorAmountMessage() {
         amountErrorMessage.isDisplayed();
 
     }
+
+    public void clickOnStandardRadioButton(){
+        standardRadioButton.click();
+    }
+ public void clickOnIndividualRadioButton(){
+        individualRadioButton.click();
+ }
+
+public void clickOnResetButton() {
+    resetButton.click();
 }
+  public void verifyAccountNameFieldIsEmpty(){
+
+      String accountName = accountNameField.getAttribute("value");
+      Assert.assertTrue(accountName.isEmpty());
+    }
+
+    public void verifyAmountFieldIsEmpty(){
+
+        String amountField = initialDepositAmountField.getAttribute("value");
+        Assert.assertTrue(amountField.isEmpty());
+    }
+
+
+
+}
+

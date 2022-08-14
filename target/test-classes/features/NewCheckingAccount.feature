@@ -34,11 +34,11 @@ Feature: This feature allows user to create new checking account
       | amount      |
       | 25.00       |
       | 25          |
-      | 1 000 000   |
+      | 1000000     |
 
-  Scenario Outline: Verify user is not able to enter un valid input
-    Given user is in the input filed initial deposit amount
-    When user enters un valid "<input>"
+  Scenario Outline: Verify user is not able to enter invalid input
+    Given user is in the input field initial deposit amount
+    When user enters invalid "<input>"
     Then verify user can't continue and corresponding error message is displayed
 
     Examples:
@@ -47,7 +47,15 @@ Feature: This feature allows user to create new checking account
       | 15          |
       | hundred     |
 
+  Scenario: verify user is able to create an account and redirected to page to view checking account
+    Given user filled all the fields
+    When user clicks on Submit button
+    Then verify user is redirected to page with checking accounts and cen see message "Successfully created new Interest Checking account named "<account name>""
 
+  Scenario: verify user is able to click on Reset button
+    Given user filled all the fields
+    When user clicks on Reset button
+    Then verify all filled values are reset to default
 
 
 ###PreferredCheckingAccount###
