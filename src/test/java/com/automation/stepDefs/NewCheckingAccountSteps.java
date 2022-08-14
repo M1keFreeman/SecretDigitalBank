@@ -86,5 +86,33 @@ public class NewCheckingAccountSteps {
     public void verify_that_the_entered_corresponds_to_the_name_displayed_in_the_field() {
     newCheckingAccountPage.verifyIfAccountFieldHasText();
     }
+    @Given("user is in the input field Initial Deposit Amount")
+    public void user_is_in_the_input_field_initial_deposit_amount() {
+
+    }
+
+    @When("user enters valid numeric whole or decimal {string}")
+    public void user_enters_valid_numeric_whole_or_decimal(String amount) {
+        newCheckingAccountPage.enterDepositAmount(amount);
+    }
+
+    @Then("verify amount in the field is the same as entered {string}")
+    public void verify_amount_in_the_field_is_the_same_as_entered(String amount) {
+        newCheckingAccountPage.verifyIfEnteredAmountDisplayed(amount);
+    }
+
+    @Given("user is in the input filed initial deposit amount")
+    public void user_is_in_the_input_filed_initial_deposit_amount() {
+
+    }
+    @When("user enters un valid {string}")
+    public void user_enters_un_valid(String input) {
+        newCheckingAccountPage.enterUnvalidAmount(input);
+    }
+    @Then("verify user can't continue and corresponding error message is displayed")
+    public void verify_user_can_t_continue_and_corresponding_error_message_is_displayed() {
+        newCheckingAccountPage.verifyErrorAmountMessage();
+
+    }
 
 }

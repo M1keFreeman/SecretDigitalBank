@@ -23,6 +23,7 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnCheckingItem(){
+
         checkingDropdown.click();
     }
 
