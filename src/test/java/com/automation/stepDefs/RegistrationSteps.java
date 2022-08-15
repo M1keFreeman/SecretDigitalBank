@@ -136,13 +136,13 @@ public class RegistrationSteps {
     }
 
     @When("user types incorrect {string} format")
-    public void user_types_incorrect_format(String string) {
-
+    public void user_types_incorrect_format(String invalidSSN) {
+        registrationPage.enterInvalidSSN(invalidSSN);
     }
 
     @Then("error message is displayed prompting to enter correct format SSN")
     public void error_message_is_displayed_prompting_to_enter_correct_format_ssn() {
-
+        registrationPage.verifyInvalidSSNErrorMessage();
     }
 
     @When("user enters   {string} in the Email field")
