@@ -6,8 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
@@ -51,6 +54,9 @@ public class RegistrationPage extends BasePage {
 
     @FindBy(xpath = "//a[contains(text(), 'Sign in')]")
     public WebElement singInLink;
+
+    @FindBy(xpath = "//input[@title='Social Security Number must be in a valid format. i.e. ###-##-####']")
+    public WebElement invalidSSNErrorMessage;
 
     public void verifyUserIsOnRegistrationPage() {
 
@@ -100,17 +106,42 @@ public class RegistrationPage extends BasePage {
     public void clickOnDOBField(){
         dateOfBirthRegistrationField.click();
     }
-    public void verifyUserCanEnterDOB(String month, String day, String year) throws InterruptedException {
+    public void verifyUserCanEnterDOB(String month, String day, String year)  {
 
         dateOfBirthRegistrationField.sendKeys(month + day + year + Keys.ENTER);
-        Thread.sleep(2000);
+
 
     }
 
-    public void verifyDOBFieldIsDisplayed(String month, String day, String year) throws InterruptedException {
+    public void verifyDOBFieldIsDisplayed(String month, String day, String year)  {
         String dobValue = dateOfBirthRegistrationField.getAttribute("value");
-        Thread.sleep(2000);
+
         Assert.assertEquals(month+ day + year, dobValue);
+    }
+
+
+    public void enterInvalidSSN(String invalidSSN) {
+        Select titleDropdown = new Select(titleRegistrationField);
+        titleDropdown.selectByVisibleText("Ms.");
+        firstNameRegistrationField.sendKeys(ConfigReader.getProperty("registration.first.name"));
+        lastNameRegistrationField.sendKeys(ConfigReader.getProperty("registration.last.name"));
+
+        genderFRegistrationField.click();
+        verifyUserCanEnterDOB("03/", "25/", "1992");
+
+
+        ssnRegistrationField.sendKeys(invalidSSN);
+    }
+
+
+    public void verifyInvalidSSNErrorMessage() {
+
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+
+        wait.until(ExpectedConditions.visibilityOf(invalidSSNErrorMessage));
+
+        Assert.assertTrue("Invalid format SSN message isn't displayed", invalidSSNErrorMessage.isDisplayed());
     }
 
 }

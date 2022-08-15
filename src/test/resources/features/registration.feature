@@ -2,7 +2,7 @@ Feature:This feature will allow user to successfully create an account
   Author - Aya
   Reviewer - Dana
 
-  Scenario: Verify Sign Up Here link redirects the user to the Sign Up page
+  Background: Verify Sign Up Here link redirects the user to the Sign Up page
     Given user is on Login page
     When user clicks on sign Up Here link
     Then verify user is on the registration page
