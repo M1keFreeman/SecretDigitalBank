@@ -161,9 +161,20 @@ public class RegistrationSteps {
 
     }
 
-
     @When("user clicks on proper {string}")
-    public void userClicksOnProper(String arg0) {
+    public void userClicksOnProper(String radioButton) {
+        if(radioButton.equals("M")) {
+            registrationPage.clickOnRadioButtonM(radioButton);
+
+        } else if(radioButton.equals("F")){
+            registrationPage.clickOnRadioButtonF(radioButton);
+        }
+    }
+
+    @Then("verify {string} is selected")
+    public void verifyIsSelected(String radioButton) {
+
+        registrationPage.verifyProperRadioButtonIsSelected(radioButton);
 
     }
 }

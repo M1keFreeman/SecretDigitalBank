@@ -29,12 +29,12 @@ Feature:This feature will allow user to successfully create an account
     Then verify Last Name is displayed in the last name field
 
   Scenario Outline: Verify user can select gender
-    When user clicks on proper "<Intended Selection>"
-    Then active radio button displays "<Displayed Radio Button>"
+    When user clicks on proper "<Radio Button>"
+    Then verify "<Radio Button>" is selected
     Examples:
-      | Intended Selection | Displayed Radio Button |
-      | M                  | M                      |
-      | F                  | F                      |
+      | Radio Button |
+      | M            |
+      | F            |
 
 
   Scenario Outline: Verify user can enter correct date of birth
