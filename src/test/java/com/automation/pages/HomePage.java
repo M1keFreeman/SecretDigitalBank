@@ -1,6 +1,7 @@
 package com.automation.pages;
 
 import org.junit.Assert;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -18,6 +19,15 @@ public class HomePage extends BasePage {
     WebElement newChecking;
 
 
+    @FindBy(id ="savings-menu")
+    WebElement savingsDropdown;
+
+    @FindBy(id ="view-savings-menu-item")
+    WebElement viewSavings;
+
+    @FindBy(id ="new-savings-menu-item")
+    WebElement newSavings;
+
     public void verifyUserIsSignedInSuccessfully(){
         Assert.assertTrue("User is not on the Home Page",homeMenuItem.isDisplayed());
     }
@@ -33,6 +43,18 @@ public class HomePage extends BasePage {
 
     }
 
+    public void clickOnSavingsItem(){
 
+        savingsDropdown.click();
+    }
+
+    public void verifySavingsOptionsAreDisplayed(){
+
+        Assert.assertTrue(viewSavings.isDisplayed()&&newSavings.isDisplayed() );
+
+    }
+    public void userChooseNewSavingsOption(){
+        newSavings.click();
+    }
 
 }

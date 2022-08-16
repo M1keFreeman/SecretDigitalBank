@@ -2,7 +2,6 @@ package com.automation.pages;
 
 import com.automation.utilities.ConfigReader;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,7 +12,6 @@ public class NewCheckingAccountPage extends BasePage{
 
     @FindBy(xpath ="//strong[text()='New Checking Account']")
     WebElement newCheckingAccountHeader;
-
 
     @FindBy(xpath ="//strong[text()='Select Account Ownership']")
     WebElement selectAccountOwnership;
