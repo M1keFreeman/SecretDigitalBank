@@ -144,6 +144,24 @@ public class RegistrationPage extends BasePage {
         Assert.assertTrue("Invalid format SSN message isn't displayed", invalidSSNErrorMessage.isDisplayed());
     }
 
+
+    public void clickOnRadioButtonM(String radioButtonM) {
+
+        genderMRegistrationField.click();
+    }
+
+    public void clickOnRadioButtonF(String radioButtonF) {
+
+        genderFRegistrationField.click();
+    }
+
+    public void verifyProperRadioButtonIsSelected(String radioButton) {
+        if (radioButton.equals("M")) {
+            Assert.assertTrue("M radio button isn't selected", genderMRegistrationField.isSelected());
+        } else if (radioButton.equals("F")) {
+            Assert.assertTrue("F radio button isn't selected", genderFRegistrationField.isSelected());
+        }
+    }
 }
 
 
