@@ -9,7 +9,7 @@ import io.cucumber.java.en.When;
 
 public class LoginSteps {
     LoginPage loginPage = new LoginPage();
-    HomePage homePage = new HomePage();
+ HomePage homePage = new HomePage();
 
 
     @Given("user entered correct URL")
